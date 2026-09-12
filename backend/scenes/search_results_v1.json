@@ -1,0 +1,38 @@
+{
+  "scene_id": "search_results_v1",
+  "title": "Trang kết quả tìm kiếm",
+  "primary_risk": "content",
+  "risk_color": "#f472b6",
+  "spawn_point": [0, 1.6, 5],
+  "time_limit_seconds": 90,
+  "risk_thresholds": { "high": 5, "safe_max_at_timeout": 1 },
+  "objects": [
+    { "id": "sensational_result", "shape": "box", "color": "#f472b6", "position": [-1.5, 1.2, -4] },
+    { "id": "trusted_result", "shape": "box", "color": "#4ade80", "position": [1.5, 1.2, -4] }
+  ],
+  "anchors": [
+    {
+      "anchor_id": "sensational_result",
+      "object_id": "sensational_result",
+      "type": "interactive_screen",
+      "ai_fills": ["headline_text"],
+      "actions": [
+        { "action_id": "click_sensational", "trigger": "click", "score_delta": 3 }
+      ]
+    },
+    {
+      "anchor_id": "trusted_result",
+      "object_id": "trusted_result",
+      "type": "interactive_screen",
+      "ai_fills": ["headline_text"],
+      "actions": [
+        { "action_id": "click_trusted", "trigger": "click", "score_delta": -3, "force_ending": "safe_active" }
+      ]
+    }
+  ],
+  "endings": {
+    "trapped": { "message": "Bạn tin và chia sẻ một thông tin sai lệch cho bạn bè." },
+    "escaped_unaware": { "message": "Bạn không chắc chắn tin nào đúng, và không kiểm tra thêm." },
+    "safe_active": { "message": "Bạn đã đối chiếu với nguồn đáng tin cậy trước khi tin!" }
+  }
+}

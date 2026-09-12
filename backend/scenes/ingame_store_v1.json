@@ -1,0 +1,37 @@
+{
+  "scene_id": "ingame_store_v1",
+  "title": "Cửa hàng vật phẩm trong game",
+  "primary_risk": "commerce",
+  "risk_color": "#fbbf24",
+  "spawn_point": [0, 1.6, 5],
+  "time_limit_seconds": 90,
+  "risk_thresholds": { "high": 5, "safe_max_at_timeout": 1 },
+  "objects": [
+    { "id": "buy_now_panel", "shape": "box", "color": "#fbbf24", "position": [-1.5, 1.2, -4] },
+    { "id": "compare_price_panel", "shape": "box", "color": "#4ade80", "position": [1.5, 1.2, -4] }
+  ],
+  "anchors": [
+    {
+      "anchor_id": "buy_now_panel",
+      "object_id": "buy_now_panel",
+      "type": "interactive_screen",
+      "ai_fills": ["discount_claim"],
+      "actions": [
+        { "action_id": "buy_now", "trigger": "click", "score_delta": 4, "force_ending": "trapped" }
+      ]
+    },
+    {
+      "anchor_id": "compare_price_panel",
+      "object_id": "compare_price_panel",
+      "type": "interactive_screen",
+      "actions": [
+        { "action_id": "compare_price", "trigger": "click", "score_delta": -4, "force_ending": "safe_active" }
+      ]
+    }
+  ],
+  "endings": {
+    "trapped": { "message": "Bạn đã nhập thông tin thẻ ngân hàng. Giao dịch có dấu hiệu lừa đảo." },
+    "escaped_unaware": { "message": "Bạn không mua nhưng cũng không hiểu vì sao giá đó bất thường." },
+    "safe_active": { "message": "Bạn đã so sánh giá và nhận diện được chiêu trò quảng cáo!" }
+  }
+}

@@ -1,0 +1,38 @@
+{
+  "scene_id": "gaming_lobby_v1",
+  "title": "Sảnh chờ trò chơi",
+  "primary_risk": "contact",
+  "risk_color": "#ffb347",
+  "spawn_point": [0, 1.6, 5],
+  "time_limit_seconds": 120,
+  "risk_thresholds": { "high": 6, "safe_max_at_timeout": 1 },
+  "objects": [
+    { "id": "npc_stranger", "shape": "sphere", "color": "#ffb347", "position": [2, 0.6, -3] },
+    { "id": "report_button", "shape": "cylinder", "color": "#4ade80", "position": [3.5, 0.7, 1] }
+  ],
+  "anchors": [
+    {
+      "anchor_id": "npc_stranger",
+      "object_id": "npc_stranger",
+      "type": "npc_dialogue",
+      "ai_fills": ["opening_line"],
+      "actions": [
+        { "action_id": "approach", "trigger": "proximity", "score_delta": 1 },
+        { "action_id": "type_reply", "trigger": "free_text", "ai_evaluates": true }
+      ]
+    },
+    {
+      "anchor_id": "report_button",
+      "object_id": "report_button",
+      "type": "report_action",
+      "actions": [
+        { "action_id": "report", "trigger": "click", "score_delta": -4, "force_ending": "safe_active" }
+      ]
+    }
+  ],
+  "endings": {
+    "trapped": { "message": "Bạn đã chia sẻ thông tin cá nhân cho người lạ. Tài khoản có thể bị lợi dụng." },
+    "escaped_unaware": { "message": "Người chơi lạ rời đi. Bạn chưa chủ động cảnh giác lần này." },
+    "safe_active": { "message": "Bạn đã báo cáo người chơi này. Xử lý rất tốt!" }
+  }
+}

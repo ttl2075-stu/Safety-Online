@@ -1,0 +1,51 @@
+# ==========================================
+# GITIGNORE CHO DỰ ÁN SAFETY-ONLINE
+# ==========================================
+
+# 1. Bảo mật & Biến môi trường (Tuyệt đối không commit API keys)
+.env
+.env.local
+.env.*.local
+backend/.env
+!*.env.example
+
+# 2. Nhật ký & Dữ liệu kiểm toán bảo mật (Chứa thông tin PII của học sinh)
+*.log
+logs/
+backend/logs/*.log
+!backend/logs/.gitkeep
+
+# 3. Môi trường ảo Python & Bộ nhớ đệm
+.venv/
+venv/
+env/
+ENV/
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.pytest_cache/
+
+# 4. Node.js & Frontend dependencies
+node_modules/
+dist/
+dist-ssr/
+*.local
+
+# Nhật ký npm / yarn
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+
+# 5. Cấu hình IDE & Hệ điều hành
+.idea/
+.vscode/
+*.suo
+*.ntvs*
+*.njsproj
+*.sln
+*.sw?
+.DS_Store
+Thumbs.db
+Desktop.ini
